@@ -21,12 +21,33 @@ const PRESET_AMOUNTS = [
   { value: 100, label: "$100", badge: "10% free" },
 ]
 
+const calculateMinutes = (amount: number): number => {
+  const minutesMap: { [key: number]: number } = {
+    5: 250,
+    10: 500,
+    20: 1000,
+    50: 3000,
+    100: 5000,
+  }
+
+  // If exact match exists, use it
+  if (minutesMap[amount]) {
+    return minutesMap[amount]
+  }
+
+  // Otherwise calculate at 50 minutes per dollar
+  return amount * 50
+}
+
 export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
   const [selectedAmount, setSelectedAmount] = useState(20)
   const [customAmount, setCustomAmount] = useState("")
   const [autoTopUp, setAutoTopUp] = useState(true)
   const [taxInvoice, setTaxInvoice] = useState(true)
   const [promoCode, setPromoCode] = useState("")
+
+  const currentAmount = customAmount ? Number.parseFloat(customAmount) : selectedAmount
+  const minutes = calculateMinutes(currentAmount)
 
   const handleCheckout = () => {
     // Handle checkout logic here
@@ -149,7 +170,8 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
             <div className="flex items-center gap-2 text-sm">
               <Phone className="h-4 w-4" />
               <span>
-                Up to <span className="font-semibold">1,000</span> minutes of international calling time
+                Up to <span className="font-semibold">{minutes.toLocaleString()}</span> minutes of international calling
+                time
               </span>
             </div>
 
