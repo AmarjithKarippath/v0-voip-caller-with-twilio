@@ -123,7 +123,7 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
                   <Label htmlFor="auto-topup" className="cursor-pointer font-medium">
                     Enable Auto Top-up
                   </Label>
-                  <p className="text-sm text-primary">Avoid interrupting an important call</p>
+                  <p className="text-sm text-red-500">Avoid interrupting an important call</p>
                 </div>
               </div>
 
