@@ -3,11 +3,17 @@
 import { useState } from "react"
 import { DialPad } from "./dial-pad"
 import { Button } from "@/components/ui/button"
-import { Phone, Plus, X, Check } from "lucide-react"
+import { Phone, Plus, X, Check, ArrowRight } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-export function VoipDialer() {
+interface VoipDialerProps {
+  isSignedIn: boolean
+  onSignIn: () => void
+  onAddCredit: () => void
+}
+
+export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProps) {
   const [phoneNumber, setPhoneNumber] = useState("")
   const [isInCall, setIsInCall] = useState(false)
   const [callDuration, setCallDuration] = useState(0)
@@ -16,6 +22,14 @@ export function VoipDialer() {
   const [countryCode, setCountryCode] = useState("+1")
   const [balance] = useState(200)
   const { toast } = useToast()
+
+  const handleBalanceClick = () => {
+    if (!isSignedIn) {
+      onSignIn()
+    } else {
+      onAddCredit()
+    }
+  }
 
   const handleNumberInput = (digit: string) => {
     setPhoneNumber((prev) => prev + digit)
@@ -93,6 +107,14 @@ export function VoipDialer() {
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
+  const handleAddCreditClick = () => {
+    if (!isSignedIn) {
+      onSignIn()
+    } else {
+      onAddCredit()
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 lg:p-8">
       <div className="w-full max-w-7xl grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -108,14 +130,16 @@ export function VoipDialer() {
             </p>
           </div>
 
-          <div className="space-y-4">
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all"
-            >
-              Call anyone in BR →
-            </Button>
+          <Button
+            onClick={handleAddCreditClick}
+            size="lg"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-lg"
+          >
+            Add Credit to Call
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
 
+          <div className="space-y-4">
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
                 From only <span className="font-semibold text-foreground">0.02 USD</span> per minute!
@@ -133,18 +157,18 @@ export function VoipDialer() {
         {/* Right Column - Dialer Card */}
         <div className="w-full max-w-md mx-auto lg:mx-0">
           <div className="bg-card rounded-3xl shadow-2xl p-8 space-y-6 border border-border/50">
-            {/* Balance and Menu */}
-            <div className="flex items-center justify-between">
+            {/* Balance */}
+            <div className="flex items-center justify-start">
               <div className="flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-full border border-primary/30">
                 <span className="text-sm font-semibold">Balance: ${balance}</span>
-                <Button size="icon" variant="ghost" className="h-6 w-6 rounded-full hover:bg-primary/30">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="h-6 w-6 rounded-full hover:bg-primary/30"
+                  onClick={handleBalanceClick}
+                >
                   <Plus className="h-4 w-4" />
                 </Button>
-              </div>
-              <div className="flex gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
               </div>
             </div>
 
@@ -183,15 +207,6 @@ export function VoipDialer() {
                   )}
                 </div>
               </div>
-
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full border-primary/30 text-primary hover:bg-primary/10 bg-transparent"
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Add contact
-              </Button>
             </div>
 
             {/* Dial Pad */}
