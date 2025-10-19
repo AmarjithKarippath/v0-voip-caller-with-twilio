@@ -24,11 +24,11 @@ export function Header({ isSignedIn, userEmail, onSignIn, onSignOut, onAddCredit
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <ThemeToggle />
           <h2 className="text-xl font-bold header-text">Chillout Fox</h2>
         </div>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           {!isSignedIn ? (
             <Button onClick={onSignIn} variant="outline" size="sm">
               Sign In
