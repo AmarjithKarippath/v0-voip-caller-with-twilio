@@ -2,11 +2,10 @@
 
 import { useState } from "react"
 import { DialPad } from "./dial-pad"
-import { CallControls } from "./call-controls"
-import { CallHistory } from "./call-history"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Phone, Clock, User } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Phone, Plus, X, Check } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export function VoipDialer() {
   const [phoneNumber, setPhoneNumber] = useState("")
@@ -14,6 +13,8 @@ export function VoipDialer() {
   const [callDuration, setCallDuration] = useState(0)
   const [callSid, setCallSid] = useState<string | null>(null)
   const [durationInterval, setDurationInterval] = useState<NodeJS.Timeout | null>(null)
+  const [countryCode, setCountryCode] = useState("+1")
+  const [balance] = useState(200)
   const { toast } = useToast()
 
   const handleNumberInput = (digit: string) => {
@@ -51,7 +52,6 @@ export function VoipDialer() {
       setIsInCall(true)
       setCallSid(data.callSid)
 
-      // Start call duration counter
       const interval = setInterval(() => {
         setCallDuration((prev) => prev + 1)
       }, 1000)
@@ -94,78 +94,158 @@ export function VoipDialer() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-md">
-        <div className="bg-card rounded-xl shadow-lg border border-border overflow-hidden">
-          {/* Header */}
-          <div className="bg-primary text-primary-foreground p-6 text-center">
-            <h1 className="text-2xl font-bold mb-1">VoiceCall</h1>
-            <p className="text-sm opacity-90">Powered by Twilio</p>
+    <div className="min-h-screen flex items-center justify-center p-4 lg:p-8">
+      <div className="w-full max-w-7xl grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        {/* Left Column - Hero Content */}
+        <div className="space-y-8">
+          <div className="space-y-6">
+            <h1 className="text-5xl lg:text-7xl font-bold leading-tight gradient-text">
+              Cheap International Calls In Your Browser
+            </h1>
+            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+              Call clients, banks, government offices, or any number worldwide. Pay only for what you use. No contracts
+              or hidden fees.
+            </p>
           </div>
 
-          <Tabs defaultValue="dialer" className="w-full">
-            <TabsList className="w-full grid grid-cols-3 rounded-none border-b">
-              <TabsTrigger value="dialer" className="gap-2">
-                <Phone className="h-4 w-4" />
-                <span className="hidden sm:inline">Dialer</span>
-              </TabsTrigger>
-              <TabsTrigger value="history" className="gap-2">
-                <Clock className="h-4 w-4" />
-                <span className="hidden sm:inline">History</span>
-              </TabsTrigger>
-              <TabsTrigger value="contacts" className="gap-2">
-                <User className="h-4 w-4" />
-                <span className="hidden sm:inline">Contacts</span>
-              </TabsTrigger>
-            </TabsList>
+          <div className="space-y-4">
+            <Button
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all"
+            >
+              Call anyone in BR →
+            </Button>
 
-            <TabsContent value="dialer" className="p-6 space-y-6">
-              {/* Phone Number Display */}
-              <div className="bg-muted rounded-lg p-4 min-h-[60px] flex items-center justify-center">
-                <input
-                  type="tel"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="Enter phone number"
-                  className="bg-transparent text-2xl font-mono text-center w-full outline-none text-foreground placeholder:text-muted-foreground"
-                  readOnly={isInCall}
-                />
-              </div>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">
+                From only <span className="font-semibold text-foreground">0.02 USD</span> per minute!
+              </p>
+              <p className="text-sm font-semibold text-primary">First call is FREE</p>
+            </div>
 
-              {/* Call Duration (shown during call) */}
-              {isInCall && (
-                <div className="text-center">
-                  <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full">
-                    <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                    <span className="font-mono font-semibold">{formatDuration(callDuration)}</span>
-                  </div>
-                </div>
-              )}
-
-              {/* Dial Pad */}
-              <DialPad onNumberInput={handleNumberInput} onDelete={handleDelete} disabled={isInCall} />
-
-              {/* Call Controls */}
-              <CallControls isInCall={isInCall} onCall={handleCall} onEndCall={handleEndCall} disabled={!phoneNumber} />
-            </TabsContent>
-
-            <TabsContent value="history" className="p-6">
-              <CallHistory />
-            </TabsContent>
-
-            <TabsContent value="contacts" className="p-6">
-              <div className="text-center text-muted-foreground py-12">
-                <User className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                <p>No contacts yet</p>
-                <p className="text-sm mt-1">Add contacts to quick dial</p>
-              </div>
-            </TabsContent>
-          </Tabs>
+            <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full border border-accent/20">
+              <Check className="h-4 w-4" />
+              <span className="text-sm font-medium">50x cheaper than your carrier</span>
+            </div>
+          </div>
         </div>
 
-        {/* Footer Info */}
-        <div className="text-center mt-4 text-sm text-muted-foreground">
-          <p>Tip: Long press 0 to enter + for international calls</p>
+        {/* Right Column - Dialer Card */}
+        <div className="w-full max-w-md mx-auto lg:mx-0">
+          <div className="bg-card rounded-3xl shadow-2xl p-8 space-y-6 border border-border/50">
+            {/* Balance and Menu */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-full border border-primary/30">
+                <span className="text-sm font-semibold">Balance: ${balance}</span>
+                <Button size="icon" variant="ghost" className="h-6 w-6 rounded-full hover:bg-primary/30">
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
+              <div className="flex gap-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+              </div>
+            </div>
+
+            {/* Country Selector and Phone Input */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Select value={countryCode} onValueChange={setCountryCode}>
+                  <SelectTrigger className="w-32 bg-secondary border-border/50">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="+1">US +1</SelectItem>
+                    <SelectItem value="+44">UK +44</SelectItem>
+                    <SelectItem value="+91">IN +91</SelectItem>
+                    <SelectItem value="+86">CN +86</SelectItem>
+                  </SelectContent>
+                </Select>
+                <div className="flex-1 relative">
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="Enter phone number"
+                    className="w-full bg-secondary border border-border/50 rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    readOnly={isInCall}
+                  />
+                  {phoneNumber && (
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 hover:bg-muted"
+                      onClick={() => setPhoneNumber("")}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full border-primary/30 text-primary hover:bg-primary/10 bg-transparent"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Add contact
+              </Button>
+            </div>
+
+            {/* Dial Pad */}
+            <DialPad onNumberInput={handleNumberInput} onDelete={handleDelete} disabled={isInCall} />
+
+            {/* Call Button */}
+            <div className="flex items-center justify-center gap-4">
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-14 w-14 rounded-full border-border/50 hover:bg-secondary bg-transparent"
+              >
+                <span className="text-sm font-semibold">123</span>
+              </Button>
+
+              {!isInCall ? (
+                <Button
+                  size="icon"
+                  onClick={handleCall}
+                  disabled={!phoneNumber}
+                  className="h-16 w-16 rounded-full bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
+                >
+                  <Phone className="h-6 w-6" />
+                </Button>
+              ) : (
+                <Button
+                  size="icon"
+                  onClick={handleEndCall}
+                  className="h-16 w-16 rounded-full bg-destructive hover:bg-destructive/90 shadow-lg hover:shadow-xl transition-all"
+                >
+                  <Phone className="h-6 w-6 rotate-135" />
+                </Button>
+              )}
+
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handleDelete}
+                className="h-14 w-14 rounded-full border-border/50 hover:bg-secondary bg-transparent"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+
+            {/* Call Duration */}
+            {isInCall && (
+              <div className="text-center">
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  <span className="font-mono font-semibold">{formatDuration(callDuration)}</span>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

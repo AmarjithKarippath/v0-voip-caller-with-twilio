@@ -34,12 +34,11 @@ export function DialPad({ onNumberInput, onDelete, disabled }: DialPadProps) {
 
     isLongPress.current = false
 
-    // Special handling for 0 - long press adds +
     if (digit === "0") {
       longPressTimer.current = setTimeout(() => {
         isLongPress.current = true
         onNumberInput("+")
-      }, 500) // 500ms for long press
+      }, 500)
     }
   }
 
@@ -51,7 +50,6 @@ export function DialPad({ onNumberInput, onDelete, disabled }: DialPadProps) {
       longPressTimer.current = null
     }
 
-    // Only add the digit if it wasn't a long press
     if (!isLongPress.current) {
       onNumberInput(digit)
     }
@@ -66,14 +64,14 @@ export function DialPad({ onNumberInput, onDelete, disabled }: DialPadProps) {
   }
 
   return (
-    <div className="space-y-3">
-      <div className="grid grid-cols-3 gap-3">
+    <div className="space-y-4">
+      <div className="grid grid-cols-3 gap-4">
         {dialPadButtons.map(({ digit, letters }) => (
           <Button
             key={digit}
             variant="outline"
             size="lg"
-            className="h-16 flex flex-col items-center justify-center gap-0 hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50 bg-transparent"
+            className="h-20 w-20 mx-auto rounded-full flex flex-col items-center justify-center gap-0 bg-[var(--dial-button)] hover:bg-[var(--dial-button-hover)] border-border/30 transition-all duration-200 disabled:opacity-50 active:scale-95"
             onMouseDown={() => handleMouseDown(digit)}
             onMouseUp={() => handleMouseUp(digit)}
             onMouseLeave={() => {
@@ -86,8 +84,12 @@ export function DialPad({ onNumberInput, onDelete, disabled }: DialPadProps) {
             onTouchEnd={() => handleTouchEnd(digit)}
             disabled={disabled}
           >
-            <span className="text-2xl font-semibold">{digit}</span>
-            {letters && <span className="text-xs text-muted-foreground">{letters}</span>}
+            <span className="text-2xl font-bold text-foreground">{digit}</span>
+            {letters && (
+              <span className="text-[9px] font-medium text-muted-foreground tracking-wide uppercase mt-0.5">
+                {letters}
+              </span>
+            )}
           </Button>
         ))}
       </div>
@@ -95,7 +97,7 @@ export function DialPad({ onNumberInput, onDelete, disabled }: DialPadProps) {
       <Button
         variant="ghost"
         size="lg"
-        className="w-full h-12 hover:bg-destructive/10 hover:text-destructive"
+        className="w-full h-14 hover:bg-destructive/10 hover:text-destructive transition-all duration-200 active:scale-95"
         onClick={onDelete}
         disabled={disabled}
       >
