@@ -25,7 +25,7 @@ export function Header({ isSignedIn, userEmail, onSignIn, onSignOut, onAddCredit
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <h2 className="text-xl font-bold gradient-text">Yadaphone</h2>
+          <h2 className="text-xl font-bold header-text">Chillout Fox</h2>
         </div>
 
         <div className="flex items-center gap-3">

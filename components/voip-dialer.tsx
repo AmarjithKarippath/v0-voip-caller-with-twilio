@@ -121,8 +121,8 @@ export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProp
         {/* Left Column - Hero Content */}
         <div className="space-y-8">
           <div className="space-y-6">
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight gradient-text">
-              Cheap International Calls In Your Browser
+            <h1 className="text-5xl lg:text-7xl font-bold leading-tight header-text">
+              Cheapest International Calls
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
               Call clients, banks, government offices, or any number worldwide. Pay only for what you use. No contracts
@@ -209,18 +209,18 @@ export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProp
               </div>
             </div>
 
+
             {/* Dial Pad */}
             <DialPad onNumberInput={handleNumberInput} onDelete={handleDelete} disabled={isInCall} />
-
             {/* Call Button */}
             <div className="flex items-center justify-center gap-4">
-              <Button
+              {/* <Button
                 variant="outline"
                 size="icon"
                 className="h-14 w-14 rounded-full border-border/50 hover:bg-secondary bg-transparent"
               >
                 <span className="text-sm font-semibold">123</span>
-              </Button>
+              </Button> */}
 
               {!isInCall ? (
                 <Button

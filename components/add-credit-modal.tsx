@@ -47,20 +47,20 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
             </DialogHeader>
 
             {/* Enterprise Banner */}
-            <div className="bg-muted/50 border border-border rounded-lg p-4 flex items-center justify-between">
+            {/* <div className="bg-muted/50 border border-border rounded-lg p-4 flex items-center justify-between">
               <span className="text-sm text-muted-foreground">Need Yadaphone for the team?</span>
               <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90">
                 See enterprise plans
               </Button>
-            </div>
+            </div> */}
 
             {/* Info Text */}
-            <p className="text-sm text-muted-foreground">
+            {/* <p className="text-sm text-muted-foreground">
               Your credits are used to make international calls at competitive rates.{" "}
               <a href="#" className="text-primary hover:underline">
                 View our detailed rate calculator →
               </a>
-            </p>
+            </p> */}
 
             {/* Amount Selection */}
             <div className="space-y-4">
@@ -171,7 +171,7 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
           </div>
 
           {/* Right Column - Why Yadaphone */}
-          <div className="bg-muted/30 p-8 space-y-8 border-l border-border">
+          {/* <div className="bg-muted/30 p-8 space-y-8 border-l border-border">
             <div>
               <h3 className="text-2xl font-bold mb-6">
                 Why <span className="italic font-serif">Yadaphone</span>
@@ -215,15 +215,14 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
               </div>
             </div>
 
-            {/* Testimonial */}
             <div className="bg-background/50 rounded-lg p-6 border border-border space-y-3">
               <p className="text-sm italic text-muted-foreground leading-relaxed">
                 "After Skype announced they were shutting down, I've been looking for an alternative for ages. I'm so
-                glad I found Yadaphone!"
+                glad I found ChilloutFox!"
               </p>
               <p className="text-sm font-medium">- Michael T., Canada</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </DialogContent>
     </Dialog>

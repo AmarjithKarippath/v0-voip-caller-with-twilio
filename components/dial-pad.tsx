@@ -85,11 +85,11 @@ export function DialPad({ onNumberInput, onDelete, disabled }: DialPadProps) {
             disabled={disabled}
           >
             <span className="text-2xl font-bold text-foreground">{digit}</span>
-            {letters && (
+            {/* {letters && (
               <span className="text-[9px] font-medium text-muted-foreground tracking-wide uppercase mt-0.5">
                 {letters}
               </span>
-            )}
+            )} */}
           </Button>
         ))}
       </div>
