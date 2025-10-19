@@ -32,15 +32,18 @@ export async function POST(request: NextRequest) {
     const twilio = require("twilio")
     const client = twilio(accountSid, authToken)
 
+    const VoiceResponse = twilio.twiml.VoiceResponse
+    const twiml = new VoiceResponse()
+    twiml.say({ voice: "alice" }, "Connecting your call. Please wait.")
+    twiml.dial({ callerId: twilioNumber }, to)
+
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
-    const twimlUrl = `${appUrl}/api/twilio/voice?to=${encodeURIComponent(to)}`
 
     console.log("[v0] Making Twilio call from", twilioNumber, "to", to)
-    console.log("[v0] TwiML URL:", twimlUrl)
 
-    // Make the call
+    // Make the call with embedded TwiML
     const call = await client.calls.create({
-      url: twimlUrl,
+      twiml: twiml.toString(),
       to: to,
       from: twilioNumber,
       statusCallback: `${appUrl}/api/twilio/status`,
