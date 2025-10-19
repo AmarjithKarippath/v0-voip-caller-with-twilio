@@ -123,7 +123,7 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
                   <Label htmlFor="auto-topup" className="cursor-pointer font-medium">
                     Enable Auto Top-up
                   </Label>
-                  <p className="text-sm text-red-500">Avoid interrupting an important call</p>
+                  <p className="text-sm text-red-500">Avoids interrupting an important call</p>
                 </div>
               </div>
 
@@ -140,10 +140,10 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
             </div>
 
             {/* Promo Code */}
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <Label>Promo Code (Optional)</Label>
               <Input value={promoCode} onChange={(e) => setPromoCode(e.target.value)} placeholder="Enter promo code" />
-            </div>
+            </div> */}
 
             {/* Minutes Info */}
             <div className="flex items-center gap-2 text-sm">
