@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { Globe, Phone, Lock, CreditCard, DollarSign, Check } from "lucide-react"
+import { Phone, CreditCard, DollarSign, Check } from "lucide-react"
 
 interface AddCreditModalProps {
   open: boolean
@@ -71,7 +71,7 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
                     key={amount.value}
                     onClick={() => {
                       setSelectedAmount(amount.value)
-                      setCustomAmount("")
+                      setCustomAmount(amount.value.toString())
                     }}
                     className={`relative p-4 rounded-lg border-2 transition-all hover:border-primary/50 ${
                       selectedAmount === amount.value && !customAmount
