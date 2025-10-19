@@ -24,8 +24,8 @@ const PRESET_AMOUNTS = [
 export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
   const [selectedAmount, setSelectedAmount] = useState(20)
   const [customAmount, setCustomAmount] = useState("")
-  const [autoTopUp, setAutoTopUp] = useState(false)
-  const [taxInvoice, setTaxInvoice] = useState(false)
+  const [autoTopUp, setAutoTopUp] = useState(true)
+  const [taxInvoice, setTaxInvoice] = useState(true)
   const [promoCode, setPromoCode] = useState("")
 
   const handleCheckout = () => {
