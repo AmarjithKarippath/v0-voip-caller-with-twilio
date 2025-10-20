@@ -3,68 +3,68 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Light mode colors - soft pastel palette */
+/* Light mode colors - purple palette */
 :root {
-  --background: oklch(0.98 0.01 300);
-  --foreground: oklch(0.25 0.02 300);
-  --card: oklch(0.96 0.02 300);
-  --card-foreground: oklch(0.25 0.02 300);
-  --popover: oklch(0.98 0.01 300);
-  --popover-foreground: oklch(0.25 0.02 300);
-  --primary: oklch(0.8 0.08 300); /* #CDB4DB lavender */
+  --background: oklch(0.98 0.01 290);
+  --foreground: oklch(0.18 0.12 290); /* #240046 dark purple */
+  --card: oklch(0.96 0.02 290);
+  --card-foreground: oklch(0.18 0.12 290);
+  --popover: oklch(0.98 0.01 290);
+  --popover-foreground: oklch(0.18 0.12 290);
+  --primary: oklch(0.62 0.24 290); /* #9D4EDD bright purple */
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.88 0.06 230); /* #BDE0FE light blue */
-  --secondary-foreground: oklch(0.25 0.02 300);
-  --muted: oklch(0.94 0.02 300);
-  --muted-foreground: oklch(0.5 0.02 300);
-  --accent: oklch(0.82 0.12 350); /* #FFAFCC pink */
+  --secondary: oklch(0.82 0.18 290); /* #E0AAFF very light purple */
+  --secondary-foreground: oklch(0.18 0.12 290);
+  --muted: oklch(0.94 0.02 290);
+  --muted-foreground: oklch(0.42 0.22 290); /* #5A189A purple */
+  --accent: oklch(0.72 0.22 290); /* #C77DFF light purple */
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.88 0.03 300);
-  --input: oklch(0.94 0.02 300);
-  --ring: oklch(0.8 0.08 300);
-  --dial-button: oklch(0.85 0.04 240); /* Sky blue tint */
-  --dial-button-hover: oklch(0.8 0.06 240);
+  --border: oklch(0.88 0.03 290);
+  --input: oklch(0.94 0.02 290);
+  --ring: oklch(0.62 0.24 290);
+  --dial-button: oklch(0.52 0.24 290); /* #7B2CBF medium purple */
+  --dial-button-hover: oklch(0.62 0.24 290);
   --radius: 1rem;
 }
 
-/* Dark mode colors - deeper versions of the pastel palette */
+/* Dark mode colors - deep purple palette */
 .dark {
-  --background: oklch(0.18 0.02 300);
+  --background: oklch(0.12 0.08 290); /* #10002B very dark purple */
   --foreground: oklch(0.98 0 0);
-  --card: oklch(0.22 0.03 300);
+  --card: oklch(0.18 0.12 290); /* #240046 dark purple */
   --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.22 0.03 300);
+  --popover: oklch(0.18 0.12 290);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.75 0.1 300); /* Brighter lavender for dark mode */
-  --primary-foreground: oklch(0.18 0.02 300);
-  --secondary: oklch(0.3 0.04 230); /* Darker blue */
+  --primary: oklch(0.72 0.22 290); /* #C77DFF light purple for dark mode */
+  --primary-foreground: oklch(0.12 0.08 290);
+  --secondary: oklch(0.28 0.18 290); /* #3C096C deep purple */
   --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.25 0.03 300);
-  --muted-foreground: oklch(0.7 0.02 300);
-  --accent: oklch(0.78 0.14 350); /* Brighter pink for dark mode */
-  --accent-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.22 0.12 290);
+  --muted-foreground: oklch(0.72 0.22 290);
+  --accent: oklch(0.82 0.18 290); /* #E0AAFF very light purple for dark mode */
+  --accent-foreground: oklch(0.12 0.08 290);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.28 0.03 300);
-  --input: oklch(0.25 0.03 300);
-  --ring: oklch(0.75 0.1 300);
-  --chart-1: oklch(0.8 0.08 300);
-  --chart-2: oklch(0.82 0.12 350);
-  --chart-3: oklch(0.88 0.06 230);
-  --chart-4: oklch(0.83 0.08 240);
-  --chart-5: oklch(0.87 0.08 340);
-  --sidebar: oklch(0.2 0.02 300);
+  --border: oklch(0.28 0.18 290);
+  --input: oklch(0.22 0.12 290);
+  --ring: oklch(0.72 0.22 290);
+  --chart-1: oklch(0.62 0.24 290);
+  --chart-2: oklch(0.72 0.22 290);
+  --chart-3: oklch(0.82 0.18 290);
+  --chart-4: oklch(0.52 0.24 290);
+  --chart-5: oklch(0.42 0.22 290);
+  --sidebar: oklch(0.15 0.1 290);
   --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.8 0.08 300);
+  --sidebar-primary: oklch(0.72 0.22 290);
   --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.26 0.03 300);
+  --sidebar-accent: oklch(0.22 0.12 290);
   --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.26 0.03 300);
-  --sidebar-ring: oklch(0.45 0.04 300);
-  --dial-button: oklch(0.32 0.05 240);
-  --dial-button-hover: oklch(0.36 0.06 240);
+  --sidebar-border: oklch(0.22 0.12 290);
+  --sidebar-ring: oklch(0.42 0.22 290);
+  --dial-button: oklch(0.28 0.18 290);
+  --dial-button-hover: oklch(0.35 0.2 290);
 }
 
 @theme inline {
@@ -115,14 +115,14 @@
 }
 
 .header-text {
-  background: oklch(0.8 0.08 300);
+  background: oklch(0.62 0.24 290);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, oklch(0.8 0.08 300) 0%, oklch(0.82 0.12 350) 100%);
+  background: linear-gradient(135deg, oklch(0.62 0.24 290) 0%, oklch(0.82 0.18 290) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
