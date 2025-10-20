@@ -42,8 +42,10 @@ export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProp
   const handleCall = async () => {
     if (!phoneNumber) return
 
+    const fullPhoneNumber = phoneNumber.startsWith("+") ? phoneNumber : `${countryCode}${phoneNumber}`
+
     try {
-      console.log("[v0] Initiating call to:", phoneNumber)
+      console.log("[v0] Initiating call to:", fullPhoneNumber)
 
       const response = await fetch("/api/twilio", {
         method: "POST",
@@ -51,7 +53,7 @@ export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProp
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: phoneNumber,
+          to: fullPhoneNumber,
           from: process.env.NEXT_PUBLIC_TWILIO_PHONE_NUMBER,
         }),
       })
@@ -73,7 +75,7 @@ export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProp
 
       toast({
         title: "Call initiated",
-        description: `Calling ${phoneNumber}...`,
+        description: `Calling ${fullPhoneNumber}...`,
       })
     } catch (error) {
       console.error("[v0] Call error:", error)
@@ -121,12 +123,9 @@ export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProp
         {/* Left Column - Hero Content */}
         <div className="space-y-8">
           <div className="space-y-6">
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight header-text">
-              Cheapest International Calls
-            </h1>
+            <h1 className="text-5xl lg:text-7xl font-bold leading-tight header-text">Cheapest International Calls</h1>
             <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-              Call clients worldwide to any number. Pay only for what you use. No contracts
-              or hidden fees.
+              Call clients worldwide to any number. Pay only for what you use. No contracts or hidden fees.
             </p>
           </div>
 
@@ -208,7 +207,6 @@ export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProp
                 </div>
               </div>
             </div>
-
 
             {/* Dial Pad */}
             <DialPad onNumberInput={handleNumberInput} onDelete={handleDelete} disabled={isInCall} />
