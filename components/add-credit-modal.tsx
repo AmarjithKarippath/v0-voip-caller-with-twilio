@@ -137,7 +137,7 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
             </div>
 
             {/* Checkboxes */}
-            <div className="space-y-3">
+            {/* <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <Checkbox id="auto-topup" checked={autoTopUp} onCheckedChange={(checked) => setAutoTopUp(!!checked)} />
                 <div className="space-y-1">
@@ -158,7 +158,7 @@ export function AddCreditModal({ open, onOpenChange }: AddCreditModalProps) {
                   Issue tax-deductible invoice (address required)
                 </Label>
               </div>
-            </div>
+            </div> */}
 
             {/* Promo Code */}
             {/* <div className="space-y-2">
