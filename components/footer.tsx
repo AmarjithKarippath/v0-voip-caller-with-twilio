@@ -22,7 +22,7 @@ export function Footer() {
           </Link>
         </div>
         <div className="text-center mt-6 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} VoiceCall. All rights reserved.
+          © {new Date().getFullYear()} Chillout Fox. All rights reserved.
         </div>
       </div>
     </footer>

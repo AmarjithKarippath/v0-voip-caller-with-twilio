@@ -125,7 +125,7 @@ export function VoipDialer({ isSignedIn, onSignIn, onAddCredit }: VoipDialerProp
               Cheapest International Calls
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-              Call clients, banks, government offices, or any number worldwide. Pay only for what you use. No contracts
+              Call clients worldwide to any number. Pay only for what you use. No contracts
               or hidden fees.
             </p>
           </div>
